@@ -14,7 +14,14 @@ class DefaultController extends Controller
      */
     public function loginAction()
     {
-
+        if($_POST) {
+            if (($_POST['login'] != "") && ($_POST['password'] != "")) {
+                return  $this->render("UserBundle:Default:home.html.twig");
+            } else {
+                return $this->render('UserBundle:Default:inscription.html.twig');
+            }
+        }
         return array();
     }
+
 }
