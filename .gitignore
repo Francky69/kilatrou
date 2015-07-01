@@ -3,12 +3,8 @@
 /app/logs/*
 /build/
 /composer.phar
-/.idea/
-
+/.idea/*
 .idea/workspace.xml
 /web/bundles/
 /app/bootstrap*
-/app/cache/*
-/app/logs/*
 /vendor/
-/app/config/parameters.yml
