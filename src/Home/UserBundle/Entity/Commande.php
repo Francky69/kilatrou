@@ -3,6 +3,7 @@
 namespace Home\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Home\UserBundle\Entity\User;
 
 /**
  * Commande
@@ -66,16 +67,16 @@ class Commande
     /**
      * @var integer
      *
-     * @OneToOne(targetEntity="User")
-     * @JoinColumn(name="id_user", referencedColumnName="id")
+     * @ORM\OneToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="id_user", referencedColumnName="id")
      */
     private $idUser;
 
     /**
      * @var string
      *
-     * @OneToOne(targetEntity="Product")
-     * @JoinColumn(name="id_product", referencedColumnName="id")
+     * @ORM\OneToOne(targetEntity="Product")
+     * @ORM\JoinColumn(name="id_product", referencedColumnName="id")
      */
     private $idProduct;
 
@@ -97,7 +98,7 @@ class Commande
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -113,14 +114,14 @@ class Commande
     public function setDate($date)
     {
         $this->date = $date;
-    
+
         return $this;
     }
 
     /**
      * Get date
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDate()
     {
@@ -136,14 +137,14 @@ class Commande
     public function setEtat($etat)
     {
         $this->etat = $etat;
-    
+
         return $this;
     }
 
     /**
      * Get etat
      *
-     * @return integer 
+     * @return integer
      */
     public function getEtat()
     {
@@ -159,14 +160,14 @@ class Commande
     public function setAdresse($adresse)
     {
         $this->adresse = $adresse;
-    
+
         return $this;
     }
 
     /**
      * Get adresse
      *
-     * @return string 
+     * @return string
      */
     public function getAdresse()
     {
@@ -182,14 +183,14 @@ class Commande
     public function setCodePostal($codePostal)
     {
         $this->codePostal = $codePostal;
-    
+
         return $this;
     }
 
     /**
      * Get codePostal
      *
-     * @return string 
+     * @return string
      */
     public function getCodePostal()
     {
@@ -205,14 +206,14 @@ class Commande
     public function setVille($ville)
     {
         $this->ville = $ville;
-    
+
         return $this;
     }
 
     /**
      * Get ville
      *
-     * @return string 
+     * @return string
      */
     public function getVille()
     {
@@ -228,14 +229,14 @@ class Commande
     public function setPays($pays)
     {
         $this->pays = $pays;
-    
+
         return $this;
     }
 
     /**
      * Get pays
      *
-     * @return string 
+     * @return string
      */
     public function getPays()
     {
@@ -251,14 +252,14 @@ class Commande
     public function setIdUser($idUser)
     {
         $this->idUser = $idUser;
-    
+
         return $this;
     }
 
     /**
      * Get idUser
      *
-     * @return integer 
+     * @return integer
      */
     public function getIdUser()
     {
@@ -274,14 +275,14 @@ class Commande
     public function setIdProduct($idProduct)
     {
         $this->idProduct = $idProduct;
-    
+
         return $this;
     }
 
     /**
      * Get idProduct
      *
-     * @return string 
+     * @return string
      */
     public function getIdProduct()
     {
@@ -297,14 +298,14 @@ class Commande
     public function setPrixTotal($prixTotal)
     {
         $this->prixTotal = $prixTotal;
-    
+
         return $this;
     }
 
     /**
      * Get prixTotal
      *
-     * @return string 
+     * @return string
      */
     public function getPrixTotal()
     {
@@ -320,14 +321,14 @@ class Commande
     public function setFraisPort($fraisPort)
     {
         $this->fraisPort = $fraisPort;
-    
+
         return $this;
     }
 
     /**
      * Get fraisPort
      *
-     * @return string 
+     * @return string
      */
     public function getFraisPort()
     {

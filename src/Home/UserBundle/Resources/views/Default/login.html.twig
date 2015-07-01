@@ -1,42 +1,48 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>Page de connexion</title>
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
+<body>
+    <div id="wrapper">
+        <div id="page-content-wrapper">
+            <span style="text-align:center;">
+                <!-- Titre -->
+                <h1>Administration Kiloutrou</h1>
 
-<form class="form-horizontal">
-    <fieldset>
+                <form class="form-horizontal" method="POST" style="margin-top:5%;">
+                    <fieldset class="login-box">
+                        <!-- Form Name -->
+                        <legend>Connexion</legend>
 
-        <!-- Form Name -->
-        <legend>Page de connexion</legend>
+                        <!-- Pseudo -->
+                        <div class="form-group">
+                            <label class="col-md-5 control-label" for="textinput"></label>
+                            <div class="col-md-2">
+                                <input id="login" name="login" type="text" placeholder="login" class="form-control input-md" required="">
+                            </div>
+                        </div>
 
-        <!-- Text input-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="textinput">Email :</label>
-            <div class="col-md-4">
-                <input id="textinput" name="textinput" type="text" placeholder="placeholder" class="form-control input-md">
+                        <!-- Password -->
+                        <div class="form-group">
+                            <label class="col-md-5 control-label" for="textinput"></label>
+                            <div class="col-md-2">
+                                <input id="password" name="password" type="password" placeholder="Password" class="form-control input-md" required="">
+                            </div>
+                        </div>
 
-            </div>
+                        <!-- Button -->
+                        <div class="form-group">
+                            <label class="col-md-5 control-label" for="textinput"></label>
+                            <div class="col-md-2">
+                                <button id="singlebutton" name="singlebutton" class="btn btn-info connec">Connexion</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </span>
         </div>
-
-        <!-- Password input-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="passwordinput">Password :</label>
-            <div class="col-md-4">
-                <input id="passwordinput" name="passwordinput" type="password" placeholder="placeholder" class="form-control input-md">
-
-            </div>
-        </div>
-
-        <!-- Button (Double) -->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="button1id">Double Button</label>
-            <div class="col-md-8">
-                <button id="button1id" name="button1id" class="btn btn-success">Good Button</button>
-            </div>
-        </div>
-
-    </fieldset>
-</form>
+    </div>
+</body>
+</html>
