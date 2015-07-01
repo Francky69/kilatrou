@@ -14,11 +14,22 @@ class DefaultController extends Controller
      */
     public function loginAction()
     {
+    	$em = $this->getDoctrine()->getManager();
         if($_POST) {
-            if (($_POST['login'] != "") && ($_POST['password'] != "")) {
-                return  $this->render("UserBundle:Default:home.html.twig");
-            } else {
-                return $this->render('UserBundle:Default:inscription.html.twig');
+            if (($_POST['email'] != "") && ($_POST['password'] != "")) {
+            	$userMail = $_POST['email'];
+            	$userPassword = $_POST['password'];
+            	$user = $em->getRepository('UserBundle:User')->findOneByEmail($userMail);
+            	if($user){	// Utilisateur trouvé
+	            	if($user->getPassword() == $userPassword){
+	            		// Connecter l'user: creer une fonction pour tout foutre en session, etc. demain quoi...
+	                	return  $this->render("UserBundle:Default:home.html.twig");
+	            	}
+	                else
+	                	die( 'MAUVAIS PASSWORD CONNARD');
+            	}
+                else
+                	return $this->render('UserBundle:Default:inscription.html.twig');
             }
         }
         return array();
