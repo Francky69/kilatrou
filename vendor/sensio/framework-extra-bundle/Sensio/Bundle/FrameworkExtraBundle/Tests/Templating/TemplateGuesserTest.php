@@ -41,7 +41,7 @@ class TemplateGuesserTest extends \PHPUnit_Framework_TestCase
             'indexAction',
         ), new Request());
 
-        $this->assertEquals('FooBundle:Foo:index.html.twig', (string) $templateReference);;
+        $this->assertEquals('FooBundle:Foo:login.html.twig', (string) $templateReference);;
     }
 
     public function testGuessTemplateNameWithParentBundle()
@@ -58,7 +58,7 @@ class TemplateGuesserTest extends \PHPUnit_Framework_TestCase
             'indexAction',
         ), new Request());
 
-        $this->assertEquals('FooBundle:Bar:index.html.twig', (string) $templateReference);;
+        $this->assertEquals('FooBundle:Bar:login.html.twig', (string) $templateReference);;
     }
 
     public function testGuessTemplateNameWithCascadingParentBundle()
@@ -81,7 +81,7 @@ class TemplateGuesserTest extends \PHPUnit_Framework_TestCase
             'indexAction',
         ), new Request());
 
-        $this->assertEquals('FooBundle:FooBar:index.html.twig', (string) $templateReference);;
+        $this->assertEquals('FooBundle:FooBar:login.html.twig', (string) $templateReference);;
     }
 
     protected function getBundle($name, $namespace, $parent = null)

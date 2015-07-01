@@ -23,7 +23,7 @@ class DoctrineCrudGeneratorTest extends GeneratorTest
             'Controller/PostController.php',
             'Tests/Controller/PostControllerTest.php',
             'Resources/config/routing/post.yml',
-            'Resources/views/Post/index.html.twig',
+            'Resources/views/Post/login.html.twig',
             'Resources/views/Post/show.html.twig',
             'Resources/views/Post/new.html.twig',
             'Resources/views/Post/edit.html.twig',
@@ -60,7 +60,7 @@ class DoctrineCrudGeneratorTest extends GeneratorTest
             'Controller/PostController.php',
             'Tests/Controller/PostControllerTest.php',
             'Resources/config/routing/post.xml',
-            'Resources/views/Post/index.html.twig',
+            'Resources/views/Post/login.html.twig',
             'Resources/views/Post/show.html.twig',
         );
         foreach ($files as $file) {
@@ -104,7 +104,7 @@ class DoctrineCrudGeneratorTest extends GeneratorTest
         $files = array(
             'Controller/PostController.php',
             'Tests/Controller/PostControllerTest.php',
-            'Resources/views/Post/index.html.twig',
+            'Resources/views/Post/login.html.twig',
             'Resources/views/Post/show.html.twig',
             'Resources/views/Post/new.html.twig',
             'Resources/views/Post/edit.html.twig',
@@ -142,7 +142,7 @@ class DoctrineCrudGeneratorTest extends GeneratorTest
         $files = array(
             'Controller/PostController.php',
             'Tests/Controller/PostControllerTest.php',
-            'Resources/views/Post/index.html.twig',
+            'Resources/views/Post/login.html.twig',
             'Resources/views/Post/show.html.twig',
         );
         foreach ($files as $file) {

@@ -207,13 +207,13 @@ class DoctrineCrudGenerator extends Generator
     }
 
     /**
-     * Generates the index.html.twig template in the final bundle.
+     * Generates the login.html.twig template in the final bundle.
      *
      * @param string $dir The path to the folder that hosts templates in the bundle
      */
     protected function generateIndexView($dir)
     {
-        $this->renderFile('crud/views/index.html.twig.twig', $dir.'/index.html.twig', array(
+        $this->renderFile('crud/views/login.html.twig.twig', $dir.'/login.html.twig', array(
             'bundle'            => $this->bundle->getName(),
             'entity'            => $this->entity,
             'fields'            => $this->metadata->fieldMappings,

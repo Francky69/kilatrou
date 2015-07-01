@@ -22,7 +22,7 @@ class BundleGeneratorTest extends GeneratorTest
         $files = array(
             'FooBarBundle.php',
             'Controller/DefaultController.php',
-            'Resources/views/Default/index.html.twig',
+            'Resources/views/Default/login.html.twig',
             'Resources/config/routing.yml',
             'Tests/Controller/DefaultControllerTest.php',
             'Resources/config/services.yml',
@@ -40,7 +40,7 @@ class BundleGeneratorTest extends GeneratorTest
         $this->assertContains('public function indexAction', $content);
         $this->assertNotContains('@Route("/hello/{name}"', $content);
 
-        $content = file_get_contents($this->tmpDir.'/Foo/BarBundle/Resources/views/Default/index.html.twig');
+        $content = file_get_contents($this->tmpDir.'/Foo/BarBundle/Resources/views/Default/login.html.twig');
         $this->assertContains('Hello {{ name }}!', $content);
     }
 

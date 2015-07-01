@@ -57,7 +57,7 @@ class TemplateNameParserTest extends TestCase
     {
         return array(
             array('FooBundle:Post:index.html.php', new TemplateReference('FooBundle', 'Post', 'index', 'html', 'php')),
-            array('FooBundle:Post:index.html.twig', new TemplateReference('FooBundle', 'Post', 'index', 'html', 'twig')),
+            array('FooBundle:Post:login.html.twig', new TemplateReference('FooBundle', 'Post', 'index', 'html', 'twig')),
             array('FooBundle:Post:index.xml.php', new TemplateReference('FooBundle', 'Post', 'index', 'xml', 'php')),
             array('SensioFooBundle:Post:index.html.php', new TemplateReference('SensioFooBundle', 'Post', 'index', 'html', 'php')),
             array('SensioCmsFooBundle:Post:index.html.php', new TemplateReference('SensioCmsFooBundle', 'Post', 'index', 'html', 'php')),
