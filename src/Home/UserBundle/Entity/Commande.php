@@ -66,14 +66,16 @@ class Commande
     /**
      * @var integer
      *
-     * @ORM\Column(name="idUser", type="integer")
+     * @OneToOne(targetEntity="User")
+     * @JoinColumn(name="id_user", referencedColumnName="id")
      */
     private $idUser;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="idProduct", type="string", length=255)
+     * @OneToOne(targetEntity="Product")
+     * @JoinColumn(name="id_product", referencedColumnName="id")
      */
     private $idProduct;
 
