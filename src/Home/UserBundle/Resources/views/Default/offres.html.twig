@@ -12,10 +12,14 @@
     </style>
   </head>
   <body>
-    <div class="container-fluid">
+    <div class="container-fluid col-md-10 col-md-offset-1">
         {% include 'UserBundle::include/carousel.html.twig' %}
+
         {# Produits #}
-        <div class="row">
+        <div class="row" style="margin-top:2%">
+            <h3 class="text-center">Nos produits du moment</h3>
+        </div>
+        <div class="row" style="margin-top:2%">
             <div class="col-md-12">
                 <div class="row">
                     {% for product in products %}
@@ -27,7 +31,7 @@
                                     <p><b>Prix:</b> {{ product.prix }}€</p>
                                     <p><b>Note:</b> {{ product.note }}/10</p>
                                     <p>{{ product.description }}</p>
-                                    <p><a class="btn btn-primary" href="./produit/{{ product.id }}">Je la souille !</a></p>
+                                    <p><a class="btn btn-primary" href="./produit/{{ product.id }}">En savoir plus</a></p>
                                 </div>
                             </div>
                         </div>
@@ -35,6 +39,8 @@
                 </div>
             </div>
         </div>
+
+        {% include 'UserBundle::include/footer.html.twig' %}
     </div>
   </body>
 </html>

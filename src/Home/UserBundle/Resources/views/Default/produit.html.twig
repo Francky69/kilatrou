@@ -7,16 +7,16 @@
     <title>Kilatrou - Nos offres</title>
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
-        .photo-profil{max-height: 200px;}
+        .photo-profil{width: 100%;}
         .thumbnail{height:500px;}
     </style>
   </head>
   <body>
-    <div class="container-fluid">
+    <div class="container-fluid col-md-10 col-md-offset-1">
         {% include 'UserBundle::include/carousel.html.twig' %}
 
         <!-- Produit -->
-        <div class="row">
+        <div class="row" style="margin-top: 5%">
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-6">
@@ -26,16 +26,20 @@
                         <h3>{{ product.reference }}</h3>
                         <p><b>Prix:</b> {{ product.prix }}€</p>
                         <p><b>Note:</b> {{ product.note }}/10</p>
-                        <p><a class="btn btn-primary" href="#">Je la veux !</a></p>
+                        <p><a class="btn btn-primary" href="../commander/{{ product.id }}">Je la veux !</a></p>
+                        <p><a class="btn btn-danger" href="../nos-offres">Non merci</a></p>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" style="margin-top: 5%">
                     <div class="col-md-12">
+                        <p><b>Description:</b></p>
                         <p>{{ product.description }}</p>
                     </div>
                 </div>
             </div>
         </div>
+
+        {% include 'UserBundle::include/footer.html.twig' %}
     </div>
   </body>
 </html>

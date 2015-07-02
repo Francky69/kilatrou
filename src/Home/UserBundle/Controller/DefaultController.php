@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Home\UserBundle\Entity\User;
+use Home\UserBundle\Entity\Commande;
 
 class DefaultController extends Controller
 {
@@ -20,7 +21,7 @@ class DefaultController extends Controller
             if (($_POST['email'] != "") && ($_POST['password'] != "")) {
             	$em = $this->getDoctrine()->getManager();
             	$user = $em->getRepository('UserBundle:User')->findOneByEmail($_POST['email']);
-            	if($user && $user->getPassword() == $_POST['password']){
+            	if($user && $user->getPassword() == md5($_POST['password'])){
             		// Mettre en Session
             		$this->getRequest()->getSession()->set('user', $user);
             		// Rediriger vers home connecté
@@ -47,7 +48,7 @@ class DefaultController extends Controller
     		$newUser->setName($_POST['nom']);
     		$newUser->setFirstName($_POST['prenom']);
     		$newUser->setEmail($_POST['email']);
-    		$newUser->setPassword($_POST['password']);
+    		$newUser->setPassword(md5($_POST['password']));
     		$em->persist($newUser);
     		$em->flush();
 
@@ -66,15 +67,11 @@ class DefaultController extends Controller
      */
     public function offresAction()
     {
-		// Check session
-		if(!$this->getRequest()->getSession()->get('user')){
-			die('<a href="./home#login">Connecte-toi, mec!</a>');
-		}
+		$this->checkSession();
 
 		// Recupérer les produits
 		$em = $this->getDoctrine()->getManager();
 		$products = $em->getRepository('UserBundle:Product')->findAll();
-		// var_dump($products);
 
     	return $this->render('UserBundle:Default:offres.html.twig', array('products' => $products));
     }
@@ -85,17 +82,61 @@ class DefaultController extends Controller
      */
     public function produitAction($idProduit)
     {
-		// Check session
+		$this->checkSession();
+
+		$produit = $this->getProduct($idProduit);
+
+    	return $this->render('UserBundle:Default:produit.html.twig', array('product' => $produit));
+    }
+
+    /**
+     * @Route("/commander/{idProduit}")
+     * @Template()
+     */
+    public function commanderAction($idProduit)
+    {
+		$this->checkSession();
+
+		$produit = $this->getProduct($idProduit);
+
+		// Rajouter au panier
+		$user = $this->getRequest()->getSession()->get('user');
+		$commande = new Commande();
+		// $commande->setIdUser($user->getId());
+		$commande->setIdProduct($idProduit);
+		$commande->setEtat(1);
+		$commande->setDate(new \DateTime());
+		/*$commande->setAdresse();
+		$commande->setVille();
+		$commande->setPays();
+		$commande->setCodePostal();
+		$commande->setFraisPort();*/
+		$em = $this->getDoctrine()->getManager();
+		$em->persist($commande);
+		$em->flush();
+		die("ok");
+		// Marquer le produit comme non disponible
+    }
+
+    /**
+     * PRIVATE FUNCTIONS
+     */
+    private function checkSession()
+    {
+    	// Check session
 		if(!$this->getRequest()->getSession()->get('user')){
 			die('<a href="./home#login">Connecte-toi, mec!</a>');
 		}
+    }
 
-		// Recupérer le produit
+    private function getProduct($idProduit)
+    {
+    	// Recupérer le produit
 		$em = $this->getDoctrine()->getManager();
 		if(!$produit = $em->getRepository('UserBundle:Product')->findOneById($idProduit)){
 			die('Produit introuvable');
 		}
-
-    	return $this->render('UserBundle:Default:produit.html.twig', array('product' => $produit));
+		else
+			return $produit;
     }
 }
