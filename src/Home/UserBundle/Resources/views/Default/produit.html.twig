@@ -23,17 +23,17 @@
                         <img class="photo-profil" alt="Photo" src="{{ product.image }}"/>
                     </div>
                     <div class="col-md-6">
-                        <h3>{{ product.reference }}</h3>
-                        <p><b>Prix:</b> {{ product.prix }}€</p>
-                        <p><b>Note:</b> {{ product.note }}/10</p>
-                        <p><a class="btn btn-primary" href="../commander/{{ product.id }}">Je la veux !</a></p>
-                        <p><a class="btn btn-danger" href="../nos-offres">Non merci</a></p>
-                    </div>
-                </div>
-                <div class="row" style="margin-top: 5%">
-                    <div class="col-md-12">
-                        <p><b>Description:</b></p>
-                        <p>{{ product.description }}</p>
+                        <div class="row">
+                            <h3>{{ product.reference }}</h3>
+                            <p><b>Prix:</b> {{ product.prix }}€</p>
+                            <p><b>Note:</b> {{ product.note }}/10</p>
+                            <p><a class="btn btn-primary" href="../commander/{{ product.id }}">Je la veux !</a></p>
+                            <p><a class="btn btn-danger" href="../nos-offres">Non merci</a></p>
+                        </div>
+                        <div class="row">
+                            <p><b>Description:</b></p>
+                            <p>{{ product.description }}</p>
+                        </div>
                     </div>
                 </div>
             </div>

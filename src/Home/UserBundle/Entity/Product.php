@@ -60,7 +60,7 @@ class Product
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
 
     private $Disponible;
@@ -86,14 +86,14 @@ class Product
     public function setReference($reference)
     {
         $this->reference = $reference;
-    
+
         return $this;
     }
 
     /**
      * Get reference
      *
-     * @return string 
+     * @return string
      */
     public function getReference()
     {
@@ -109,14 +109,14 @@ class Product
     public function setDescription($description)
     {
         $this->description = $description;
-    
+
         return $this;
     }
 
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -132,14 +132,14 @@ class Product
     public function setImage($image)
     {
         $this->image = $image;
-    
+
         return $this;
     }
 
     /**
      * Get image
      *
-     * @return string 
+     * @return string
      */
     public function getImage()
     {
@@ -155,14 +155,14 @@ class Product
     public function setPrix($prix)
     {
         $this->prix = $prix;
-    
+
         return $this;
     }
 
     /**
      * Get prix
      *
-     * @return string 
+     * @return string
      */
     public function getPrix()
     {
@@ -176,11 +176,11 @@ class Product
      * @return Product
      */
     public function setNote($note)
-{
-    $this->note = $note;
+    {
+        $this->note = $note;
 
-    return $this;
-}
+        return $this;
+    }
 
     /**
      * Get note

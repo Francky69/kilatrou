@@ -21,6 +21,8 @@ class DefaultController extends Controller
             if (($_POST['email'] != "") && ($_POST['password'] != "")) {
             	$em = $this->getDoctrine()->getManager();
             	$user = $em->getRepository('UserBundle:User')->findOneByEmail($_POST['email']);
+            	var_dump($user);
+            	var_dump($_POST);
             	if($user && $user->getPassword() == md5($_POST['password'])){
             		// Mettre en Session
             		$this->getRequest()->getSession()->set('user', $user);
@@ -56,7 +58,7 @@ class DefaultController extends Controller
     		$this->getRequest()->getSession()->set('user', $newUser);
 
     		// Redirection vers home connecté
-    		return $this->redirect('./home');
+    		return $this->redirect('./nos-offres');
     	}
     	return $this->render('UserBundle:Default:inscription.html.twig');
     }
@@ -100,22 +102,33 @@ class DefaultController extends Controller
 		$produit = $this->getProduct($idProduit);
 
 		// Rajouter au panier
-		$user = $this->getRequest()->getSession()->get('user');
+		$em = $this->getDoctrine()->getManager();
+		$idUser = $this->getRequest()->getSession()->get('user');
+		$user = $em->getRepository('UserBundle:User')->findOneById($idUser);
+
 		$commande = new Commande();
-		// $commande->setIdUser($user->getId());
-		$commande->setIdProduct($idProduit);
+		$commande->setIdUser($user);
+		$commande->setIdProduct($produit);
 		$commande->setEtat(1);
 		$commande->setDate(new \DateTime());
-		/*$commande->setAdresse();
-		$commande->setVille();
-		$commande->setPays();
-		$commande->setCodePostal();
-		$commande->setFraisPort();*/
-		$em = $this->getDoctrine()->getManager();
+		$commande->setAdresse(1);
+		$commande->setVille(2);
+		$commande->setPays(3);
+		$commande->setCodePostal(4);
+		$commande->setFraisPort(5);
+		$commande->setPrixTotal(6);
 		$em->persist($commande);
 		$em->flush();
-		die("ok");
+		// die("ok");
+		// Gerer le onetomany
+
 		// Marquer le produit comme non disponible
+		$produit->setDisponible(0);
+		$em->persist($produit);
+		$em->flush();
+		die("ok product");
+		// Ca marche pas
+		// + griser le produit dans nos offres si il est non disponible
     }
 
     /**
