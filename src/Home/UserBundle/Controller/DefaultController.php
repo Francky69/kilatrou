@@ -5,6 +5,7 @@ namespace Home\UserBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Home\UserBundle\Entity\User;
 
 class DefaultController extends Controller
 {
@@ -42,6 +43,7 @@ class DefaultController extends Controller
     public function homeAction()
     {
     	$em = $this->getDoctrine()->getManager();
+    	// A la connexion
         if($_POST) {
             if (($_POST['email'] != "") && ($_POST['password'] != "")) {
             	$userMail = $_POST['email'];
@@ -62,5 +64,27 @@ class DefaultController extends Controller
             }
         }
         return array();
+    }
+
+    /**
+     * @Route("/inscription")
+     * @Template()
+     */
+    public function inscriptionAction()
+    {
+    	if($_POST){
+    		$em = $this->getDoctrine()->getManager();
+    		var_dump($_POST);
+    		$newUser = new User();
+    		$newUser->setName($_POST['nom']);
+    		$newUser->setFirstName($_POST['prenom']);
+    		$newUser->setEmail($_POST['email']);
+    		$newUser->setPassword($_POST['password']);
+    		$em->persist($newUser);
+    		$em->flush();
+    		$data = array('success' => 'Utilisateur inséré!');
+    		return $this->render('UserBundle:Default:inscription.html.twig');
+    	}
+    	return $this->render('UserBundle:Default:inscription.html.twig');
     }
 }
