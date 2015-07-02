@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kilatrou - Nos offres</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+        .photo-profil{max-height: 200px;}
+        .thumbnail{height:500px;}
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid">
+        {% include 'UserBundle::include/carousel.html.twig' %}
+
+        <!-- Produit -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img class="photo-profil" alt="Photo" src="{{ product.image }}"/>
+                    </div>
+                    <div class="col-md-6">
+                        <h3>{{ product.reference }}</h3>
+                        <p><b>Prix:</b> {{ product.prix }}€</p>
+                        <p><b>Note:</b> {{ product.note }}/10</p>
+                        <p><a class="btn btn-primary" href="#">Je la veux !</a></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>{{ product.description }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </body>
+</html>
