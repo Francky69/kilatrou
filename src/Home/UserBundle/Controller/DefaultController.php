@@ -10,33 +10,6 @@ use Home\UserBundle\Entity\User;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/login")
-     * @Template()
-     */
-    public function loginAction()
-    {
-    	$em = $this->getDoctrine()->getManager();
-        if($_POST) {
-            if (($_POST['email'] != "") && ($_POST['password'] != "")) {
-            	$userMail = $_POST['email'];
-            	$userPassword = $_POST['password'];
-            	$user = $em->getRepository('UserBundle:User')->findOneByEmail($userMail);
-            	if($user){	// Utilisateur trouvé
-	            	if($user->getPassword() == $userPassword){
-	            		// Connecter l'user: creer une fonction pour tout foutre en session, etc. demain quoi...
-	                	return  $this->render("UserBundle:Default:home.html.twig");
-	            	}
-	                else
-	                	die( 'MAUVAIS PASSWORD CONNARD');
-            	}
-                else
-                	return $this->render('UserBundle:Default:inscription.html.twig');
-            }
-        }
-        return array();
-    }
-
-    /**
      * @Route("/home")
      * @Template()
      */
@@ -51,11 +24,11 @@ class DefaultController extends Controller
             		// Mettre en Session
             		$this->getRequest()->getSession()->set('user', $user);
             		// Rediriger vers home connecté
-                	return  $this->render("UserBundle:Default:home.html.twig");
+                	return $this->redirect('./nos-offres');
             	}
                 else{
                 	// Message d'erreur
-                	die( 'MAUVAIS PASSWORD');
+                	die( 'MAUVAIS PASSWORD (à dev...)');
                 }
             }
         }
@@ -95,14 +68,34 @@ class DefaultController extends Controller
     {
 		// Check session
 		if(!$this->getRequest()->getSession()->get('user')){
-			die("Connecte-toi, mec!");
+			die('<a href="./home#login">Connecte-toi, mec!</a>');
 		}
 
-		// Recuperer les produits
+		// Recupérer les produits
 		$em = $this->getDoctrine()->getManager();
 		$products = $em->getRepository('UserBundle:Product')->findAll();
 		// var_dump($products);
 
     	return $this->render('UserBundle:Default:offres.html.twig', array('products' => $products));
+    }
+
+    /**
+     * @Route("/produit/{idProduit}")
+     * @Template()
+     */
+    public function produitAction($idProduit)
+    {
+		// Check session
+		if(!$this->getRequest()->getSession()->get('user')){
+			die('<a href="./home#login">Connecte-toi, mec!</a>');
+		}
+
+		// Recupérer le produit
+		$em = $this->getDoctrine()->getManager();
+		if(!$produit = $em->getRepository('UserBundle:Product')->findOneById($idProduit)){
+			die('Produit introuvable');
+		}
+
+    	return $this->render('UserBundle:Default:produit.html.twig', array('product' => $produit));
     }
 }

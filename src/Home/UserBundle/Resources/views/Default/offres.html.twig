@@ -4,94 +4,37 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>Kilatrou - Nos offres</title>
-
-    <meta name="description" content="Source code generated using layoutit.com">
-    <meta name="author" content="LayoutIt!">
-
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <style type="text/css">
+        .photo-profil{max-height: 200px;}
+        .thumbnail{height:500px;}
+    </style>
   </head>
   <body>
     <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="carousel slide" id="carousel-761706">
-                <ol class="carousel-indicators">
-                    <li class="active" data-slide-to="0" data-target="#carousel-761706">
-                    </li>
-                    <li data-slide-to="1" data-target="#carousel-761706">
-                    </li>
-                    <li data-slide-to="2" data-target="#carousel-761706">
-                    </li>
-                </ol>
-                <div class="carousel-inner">
-                    <div class="item active">
-                        <img alt="Carousel Bootstrap First" src="http://www.zupimages.net/up/15/27/whbc.jpg" />
-                        <div class="carousel-caption">
-                            <h4>
-                                Kilatrou
-                            </h4>
-                            <p>
-                                Location d'escort girl en ligne.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <img alt="Carousel Bootstrap Second" src="http://zupimages.net/up/15/27/03oz.jpg" />
-                        <div class="carousel-caption">
-                            <h4>
-                                Second Thumbnail label
-                            </h4>
-                            <p>
-                                Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <img alt="Carousel Bootstrap Third" src="http://www.zupimages.net/up/15/27/lp0n.jpg" />
-                        <div class="carousel-caption">
-                            <h4>
-                                Third Thumbnail label
-                            </h4>
-                            <p>
-                                Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-                            </p>
-                        </div>
-                    </div>
-                </div> <a class="left carousel-control" href="#carousel-761706" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#carousel-761706" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="row">
-                {# Produits #}
-                {% for product in products %}
-                    <div class="col-md-4">
-                        <div class="thumbnail">
-                            <img alt="Photo" src="{{ product.image }}" />
-                            <div class="caption">
-                                <h3>
-                                    {{ product.reference }}
-                                </h3>
-                                <p>Prix: {{ product.prix }}€</p>
-                                <p>Note: {{ product.note }}/10</p>
-                                <p>{{ product.description }}</p>
-                                <p>
-                                    <a class="btn btn-primary" href="#">Je la veux!</a>
-                                </p>
+        {% include 'UserBundle::include/carousel.html.twig' %}
+        {# Produits #}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    {% for product in products %}
+                        <div class="col-md-4">
+                            <div class="thumbnail">
+                                <img class="photo-profil" alt="Photo" src="{{ product.image }}"/>
+                                <div class="caption">
+                                    <h3>{{ product.reference }}</h3>
+                                    <p><b>Prix:</b> {{ product.prix }}€</p>
+                                    <p><b>Note:</b> {{ product.note }}/10</p>
+                                    <p>{{ product.description }}</p>
+                                    <p><a class="btn btn-primary" href="./produit/{{ product.id }}">Je la souille !</a></p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                {% endfor %}
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>
-</div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="js/scripts.js"></script>
   </body>
 </html>
