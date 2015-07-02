@@ -8,3 +8,4 @@
 /web/bundles/
 /app/bootstrap*
 /vendor/
+.idea/workspace.xml
