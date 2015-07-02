@@ -98,6 +98,11 @@ class DefaultController extends Controller
 			die("Connecte-toi, mec!");
 		}
 
-    	return $this->render('UserBundle:Default:offres.html.twig');
+		// Recuperer les produits
+		$em = $this->getDoctrine()->getManager();
+		$products = $em->getRepository('UserBundle:Product')->findAll();
+		// var_dump($products);
+
+    	return $this->render('UserBundle:Default:offres.html.twig', array('products' => $products));
     }
 }
