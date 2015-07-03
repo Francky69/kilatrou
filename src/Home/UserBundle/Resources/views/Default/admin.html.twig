@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kilatrou - Administration</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+        .desc{width:200px !important}
+    </style>
+</head>
+<body>
+    <div class="container-fluid col-md-10 col-md-offset-1">
+        {% include 'UserBundle::include/carousel.html.twig' %}
+
+        <div class="row" style="margin-top: 5%">
+            <span style="text-align:center;">
+            <div class="col-md-4">
+                <!-- Ajout produit -->
+                <form class="form-horizontal" method="POST" style="margin-top:5%;">
+                    <fieldset class="login-box">
+                        <!-- Form Name -->
+                        <legend>Ajouter un produit</legend>
+
+                        <!-- Référence -->
+                        <div class="form-group">
+                            <label class="col-md-5 control-label" for="reference">Référence</label>
+                            <div class="col-md-7">
+                                <input id="reference" name="reference" type="text" placeholder="Référence" class="form-control input-md" required="">
+                            </div>
+                        </div>
+                        <!-- Description -->
+                        <div class="form-group">
+                            <label class="col-md-5 control-label" for="description">Description</label>
+                            <div class="col-md-7">
+                                <textarea class="form-control" id="description" name="description" placeholder="Description" required></textarea>
+                            </div>
+                        </div>
+                        <!-- image -->
+                        <div class="form-group">
+                            <label class="col-md-5 control-label" for="image">URL image</label>
+                            <div class="col-md-7">
+                                <input id="image" name="image" type="text" placeholder="http://www.__" class="form-control input-md" required="">
+                            </div>
+                        </div>
+                        <!-- prix -->
+                        <div class="form-group">
+                            <label class="col-md-5 control-label" for="prix">Prix</label>
+                            <div class="col-md-7">
+                                <input id="prix" name="prix" type="text" placeholder="Prix" class="form-control input-md" required="">
+                            </div>
+                        </div>
+                        <!-- Button -->
+                        <div class="form-group">
+                            <label class="col-md-5 control-label" for="textinput"></label>
+                            <div class="col-md-7">
+                                <button id="singlebutton" name="singlebutton" class="btn btn-info connec">Ajouter</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="col-md-8">
+                <!-- Liste produits -->
+                <fieldset class="login-box">
+                    <legend>Liste des produits</legend>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Reference</th>
+                                <th class="desc">Description du produit</th>
+                                <th>Photo</th>
+                                <th>Prix</th>
+                                <th>Note</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for product in products %}
+                                <tr>
+                                    <td>{{ product.reference }}</td>
+                                    <td class="desc">{{ product.description[:50] ~ '...' }}</td>
+                                    <td><img class="photo-profil img-rounded" style="max-width: 150px" alt="Photo" src="{{ product.image }}"/></td>
+                                    <td>{{ product.prix }}</td>
+                                    <td>{{ product.note }}</td>
+                                    <td>
+                                        <button class="btn btn-info connec">Modifier (à dev)</button>
+                                        <a href="./supprimerProduit/{{ product.id }}" class="btn btn-danger connec">Supprimer</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </fieldset>
+
+            </div>
+            </span>
+        </div>
+
+        {% include 'UserBundle::include/footer.html.twig' %}
+    </div>
+</body>
+</html>

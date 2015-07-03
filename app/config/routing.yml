@@ -26,3 +26,6 @@ mon-panier:
 deconnexion:
     pattern:  /deconnexion
     defaults: { _controller: UserBundle:Default:deconnexion }
+ajoutProduit:
+    pattern:  /ajoutProduit
+    defaults: { _controller: UserBundle:Default:ajoutProduit }

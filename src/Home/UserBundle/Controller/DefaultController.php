@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Home\UserBundle\Entity\User;
 use Home\UserBundle\Entity\Commande;
+use Home\UserBundle\Entity\Product;
 
 class DefaultController extends Controller
 {
@@ -169,14 +170,51 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/admin")
+     * @Route("/listeProduits")
      * @Template()
      */
-    public function adminAction()
+    public function listeProduitsAction()
     {
         // Sécuriser l'accès
 
-        return $this->render('UserBundle:Default:panier.html.twig', $this->data);
+        // Liste produits
+        $em = $this->getDoctrine()->getManager();
+        $this->data['products'] = $em->getRepository('UserBundle:Product')->findAll();
+
+        // Ajouter produit
+        if($_POST) {
+            $em = $this->getDoctrine()->getManager();
+            $newProduct = new Product();
+            $newProduct->setReference($_POST['reference']);
+            $newProduct->setDescription($_POST['description']);
+            $newProduct->setImage($_POST['image']);
+            $newProduct->setPrix($_POST['prix']);
+            $newProduct->setNote(0);
+            $em->persist($newProduct);
+            $em->flush();
+            die("OK! PRODUIT RAJOUTE EN BASE!");
+        }
+
+        return $this->render('UserBundle:Default:admin.html.twig', $this->data);
+    }
+
+    /**
+     * @Route("/supprimerProduit/{idProduit}")
+     * @Template()
+     */
+    public function supprimerProduitAction($idProduit)
+    {
+        // Sécuriser l'accès
+
+        // Liste produits
+        $em = $this->getDoctrine()->getManager();
+        if(!$produit = $em->getRepository('UserBundle:Product')->findOneById($idProduit))
+            die('PRODUIT INTROUVABLE');
+
+        $em->remove($produit);
+        $em->flush();
+
+        return $this->redirect('../listeProduits');
     }
 
     /**

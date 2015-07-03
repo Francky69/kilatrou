@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kilatrou - Mes infos</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container-fluid col-md-10 col-md-offset-1">
+        {% include 'UserBundle::include/carousel.html.twig' %}
+
+        {# Produits #}
+        <div class="row" style="margin-top:2%">
+            <h3 class="text-center">Mes informations personnelles</h3>
+        </div>
+        <div class="row" style="margin-top:2%">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="row">
+                    <p><b>Prénom: </b>{{ user.firstName }}</p>
+                    <p><b>Nom: </b>{{ user.Name }}</p>
+                    <p><b>Email: </b>{{ user.email }}</p>
+                </div>
+                <div class="row" style="margin-top: 5%">
+                    <h4 class="text-center">Mes commandes précédentes (à dev...)</h4>
+                    <table class="table table-hover table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Produit</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="danger">
+                                <td>Anissa</td>
+                                <td>02/07/2015</td>
+                                <td>A payer!</td>
+                            </tr>
+                            <tr>
+                                <td>Michelle</td>
+                                <td>12/02/2015</td>
+                                <td>Payé</td>
+                            </tr>
+                            <tr>
+                                <td>Shani</td>
+                                <td>31/12/2014</td>
+                                <td>Payé</td>
+                            </tr>
+                            <tr>
+                                <td>Anissa</td>
+                                <td>23/10/2013</td>
+                                <td>Payé</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        {% include 'UserBundle::include/footer.html.twig' %}
+    </div>
+  </body>
+</html>
+

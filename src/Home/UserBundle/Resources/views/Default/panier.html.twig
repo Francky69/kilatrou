@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kilatrou - Mon panier</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container-fluid col-md-10 col-md-offset-1">
+        {% include 'UserBundle::include/carousel.html.twig' %}
+
+        {# Produits #}
+        <div class="row" style="margin-top:2%">
+            <h3 class="text-center">Mon panier (à dev...)</h3>
+        </div>
+        <div class="row" style="margin-top:2%">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="row">
+                    <p>infos de la commande en cours</p>
+                </div>
+                <div class="row">
+                    <button class="btn btn-primary">Passer commande</button>
+                </div>
+            </div>
+        </div>
+
+        {% include 'UserBundle::include/footer.html.twig' %}
+    </div>
+  </body>
+</html>
+
