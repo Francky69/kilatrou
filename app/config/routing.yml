@@ -29,3 +29,6 @@ deconnexion:
 ajoutProduit:
     pattern:  /ajoutProduit
     defaults: { _controller: UserBundle:Default:ajoutProduit }
+listeProduits:
+    pattern:  /listeProduits
+    defaults: { _controller: UserBundle:Default:listeProduits }

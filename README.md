@@ -9,4 +9,10 @@ Stephan TAPE - lead dev
 
 Voir les liens des différentes pages dans le routing.yml
 
+Home:
+http://localhost/isitech/kilatrou/web/app_dev.php/home
+
+Admin:
+http://localhost/isitech/kilatrou/web/app_dev.php/listeProduits
+
 
