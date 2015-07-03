@@ -115,7 +115,13 @@
                         <fieldset class="login-box">
                             <!-- Form Name -->
                             <h2>Connexion</h2>
-
+                            {%  if error is not null %}
+                                <div class="alert alert-danger col-md-4 col-md-offset-4" role="alert">
+                                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                    <span class="sr-only">Error:</span>
+                                    {{ error }}
+                                </div>
+                            {% endif %}
                             <!-- Pseudo -->
                             <div class="form-group">
                                 <div class="col-md-4 col-md-offset-4">

@@ -21,8 +21,8 @@ class DefaultController extends Controller
             if (($_POST['email'] != "") && ($_POST['password'] != "")) {
             	$em = $this->getDoctrine()->getManager();
             	$user = $em->getRepository('UserBundle:User')->findOneByEmail($_POST['email']);
-            	var_dump($user);
-            	var_dump($_POST);
+            	//var_dump($user);
+            	//var_dump($_POST);
             	if($user && $user->getPassword() == md5($_POST['password'])){
             		// Mettre en Session
             		$this->getRequest()->getSession()->set('user', $user);
@@ -31,11 +31,11 @@ class DefaultController extends Controller
             	}
                 else{
                 	// Message d'erreur
-                	die( 'MAUVAIS PASSWORD (à dev...)');
+                    return array("error" => "Erreur password !");
                 }
             }
         }
-        return array();
+        return array("error" => null);
     }
 
     /**
