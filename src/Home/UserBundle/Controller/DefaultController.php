@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Home\UserBundle\Entity\User;
 use Home\UserBundle\Entity\Commande;
+use Home\UserBundle\Entity\Product;
 
 class DefaultController extends Controller
 {
@@ -69,13 +70,15 @@ class DefaultController extends Controller
      */
     public function offresAction()
     {
-		$this->checkSession();
+        $this->checkSession();
 
 		// Recupérer les produits
 		$em = $this->getDoctrine()->getManager();
 		$products = $em->getRepository('UserBundle:Product')->findAll();
 
-    	return $this->render('UserBundle:Default:offres.html.twig', array('products' => $products));
+        $this->data['products'] = $products;
+
+    	return $this->render('UserBundle:Default:offres.html.twig', $this->data);
     }
 
     /**
@@ -86,9 +89,9 @@ class DefaultController extends Controller
     {
 		$this->checkSession();
 
-		$produit = $this->getProduct($idProduit);
+        $this->data['product'] = $this->getProduct($idProduit);
 
-    	return $this->render('UserBundle:Default:produit.html.twig', array('product' => $produit));
+    	return $this->render('UserBundle:Default:produit.html.twig', $this->data);
     }
 
     /**
@@ -132,12 +135,96 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/mes-infos")
+     * @Template()
+     */
+    public function infosAction()
+    {
+        $this->checkSession();
+
+        return $this->render('UserBundle:Default:infos.html.twig', $this->data);
+    }
+
+    /**
+     * @Route("/mon-panier")
+     * @Template()
+     */
+    public function panierAction()
+    {
+        $this->checkSession();
+
+        return $this->render('UserBundle:Default:panier.html.twig', $this->data);
+    }
+
+    /**
+     * @Route("/deconnexion")
+     * @Template()
+     */
+    public function deconnexionAction()
+    {
+        // Supprimer la session
+        $this->getRequest()->getSession()->set('user', null);
+
+        // Retour à la home
+        return $this->redirect('./home');
+    }
+
+    /**
+     * @Route("/listeProduits")
+     * @Template()
+     */
+    public function listeProduitsAction()
+    {
+        // Sécuriser l'accès
+
+        // Liste produits
+        $em = $this->getDoctrine()->getManager();
+        $this->data['products'] = $em->getRepository('UserBundle:Product')->findAll();
+
+        // Ajouter produit
+        if($_POST) {
+            $em = $this->getDoctrine()->getManager();
+            $newProduct = new Product();
+            $newProduct->setReference($_POST['reference']);
+            $newProduct->setDescription($_POST['description']);
+            $newProduct->setImage($_POST['image']);
+            $newProduct->setPrix($_POST['prix']);
+            $newProduct->setNote(0);
+            $em->persist($newProduct);
+            $em->flush();
+            die("OK! PRODUIT RAJOUTE EN BASE!");
+        }
+
+        return $this->render('UserBundle:Default:admin.html.twig', $this->data);
+    }
+
+    /**
+     * @Route("/supprimerProduit/{idProduit}")
+     * @Template()
+     */
+    public function supprimerProduitAction($idProduit)
+    {
+        // Sécuriser l'accès
+
+        // Liste produits
+        $em = $this->getDoctrine()->getManager();
+        if(!$produit = $em->getRepository('UserBundle:Product')->findOneById($idProduit))
+            die('PRODUIT INTROUVABLE');
+
+        $em->remove($produit);
+        $em->flush();
+
+        return $this->redirect('../listeProduits');
+    }
+
+    /**
      * PRIVATE FUNCTIONS
      */
     private function checkSession()
     {
-    	// Check session
-		if(!$this->getRequest()->getSession()->get('user')){
+        // echo '<pre>';var_dump($this->getRequest()->getSession()->get('user')); echo '</pre>'; //debug user
+    	// Check session et récupérer user
+		if(!$this->data['user'] = $this->getRequest()->getSession()->get('user')){
 			die('<a href="./home#login">Connecte-toi, mec!</a>');
 		}
     }
