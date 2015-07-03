@@ -69,13 +69,15 @@ class DefaultController extends Controller
      */
     public function offresAction()
     {
-		$this->checkSession();
+        $this->checkSession();
 
 		// Recupérer les produits
 		$em = $this->getDoctrine()->getManager();
 		$products = $em->getRepository('UserBundle:Product')->findAll();
 
-    	return $this->render('UserBundle:Default:offres.html.twig', array('products' => $products));
+        $this->data['products'] = $products;
+
+    	return $this->render('UserBundle:Default:offres.html.twig', $this->data);
     }
 
     /**
@@ -86,9 +88,9 @@ class DefaultController extends Controller
     {
 		$this->checkSession();
 
-		$produit = $this->getProduct($idProduit);
+        $this->data['product'] = $this->getProduct($idProduit);
 
-    	return $this->render('UserBundle:Default:produit.html.twig', array('product' => $produit));
+    	return $this->render('UserBundle:Default:produit.html.twig', $this->data);
     }
 
     /**
@@ -132,12 +134,59 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/mes-infos")
+     * @Template()
+     */
+    public function infosAction()
+    {
+        $this->checkSession();
+
+        return $this->render('UserBundle:Default:infos.html.twig', $this->data);
+    }
+
+    /**
+     * @Route("/mon-panier")
+     * @Template()
+     */
+    public function panierAction()
+    {
+        $this->checkSession();
+
+        return $this->render('UserBundle:Default:panier.html.twig', $this->data);
+    }
+
+    /**
+     * @Route("/deconnexion")
+     * @Template()
+     */
+    public function deconnexionAction()
+    {
+        // Supprimer la session
+        $this->getRequest()->getSession()->set('user', null);
+
+        // Retour à la home
+        return $this->redirect('./home');
+    }
+
+    /**
+     * @Route("/admin")
+     * @Template()
+     */
+    public function adminAction()
+    {
+        // Sécuriser l'accès
+
+        return $this->render('UserBundle:Default:panier.html.twig', $this->data);
+    }
+
+    /**
      * PRIVATE FUNCTIONS
      */
     private function checkSession()
     {
-    	// Check session
-		if(!$this->getRequest()->getSession()->get('user')){
+        // echo '<pre>';var_dump($this->getRequest()->getSession()->get('user')); echo '</pre>'; //debug user
+    	// Check session et récupérer user
+		if(!$this->data['user'] = $this->getRequest()->getSession()->get('user')){
 			die('<a href="./home#login">Connecte-toi, mec!</a>');
 		}
     }

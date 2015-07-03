@@ -2,4 +2,27 @@ user:
     resource: "@UserBundle/Controller/"
     type:     annotation
     prefix:   /
-
+home:
+    pattern:  /home
+    defaults: { _controller: UserBundle:Default:home }
+home:
+    pattern:  /
+    defaults: { _controller: UserBundle:Default:home }
+inscription:
+    pattern:  /inscription
+    defaults: { _controller: UserBundle:Default:inscription }
+nos-offres:
+    pattern:  /nos-offres
+    defaults: { _controller: UserBundle:Default:offres }
+# produit:
+#     pattern:  /produit/{slug}
+#     defaults: { _controller: UserBundle:Default:produit }
+mes-infos:
+    pattern:  /mes-infos
+    defaults: { _controller: UserBundle:Default:infos }
+mon-panier:
+    pattern:  /mon-panier
+    defaults: { _controller: UserBundle:Default:panier }
+deconnexion:
+    pattern:  /deconnexion
+    defaults: { _controller: UserBundle:Default:deconnexion }

@@ -1,7 +1,4 @@
 <!-- Carousel -->
-<style type="text/css">
-
-</style>
 <div class="row">
     <div class="col-md-12">
         <div class="carousel slide" id="carousel-761706">
@@ -36,7 +33,29 @@
             <a class="left carousel-control" href="#carousel-761706" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
             <a class="right carousel-control" href="#carousel-761706" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
         </div>
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="./home">Home Kilatrou</a>
+            </div>
+            {% if user is defined %}
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a>Bonjour {{ user.firstName }}</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mon compte<strong class="caret"></strong></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ path('mes-infos') }}">Mes informations</a></li>
+                                <li><a href="{{ path('mon-panier') }}">Mon panier</a></li>
+                                <li class="divider"></li>
+                                <li><a href="{{ path('deconnexion') }}">Me déconnecter</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            {% endif %}
+        </nav>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </div>
+
