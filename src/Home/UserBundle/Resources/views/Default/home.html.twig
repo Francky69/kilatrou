@@ -15,15 +15,16 @@
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="http://ironsummitmedia.github.io/startbootstrap-grayscale/css/grayscale.css" rel="stylesheet">
+    {#<link href="https://blackrockdigital.github.io/startbootstrap-grayscale/css/grayscale.css" rel="stylesheet">#}
+    <link href="{{ asset('css/grayscale.css') }}" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="http://ironsummitmedia.github.io/startbootstrap-grayscale/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    {#<link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">#}
     <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
 
     <style type="text/css">
-	    .intro {background: url("https://farm1.staticflickr.com/304/18689925796_84edf5df4c_k_d.jpg") no-repeat bottom center scroll;}
+	    .intro {background: url("{{ asset('img/kilatrou-bg.jpg') }}") no-repeat bottom center scroll;}
 	    .download-section{padding-top: 100px !important; background: none;}
 	</style>
 
@@ -186,16 +187,16 @@
     </footer>
 
     <!-- jQuery -->
-    <script src="http://ironsummitmedia.github.io/startbootstrap-grayscale/js/jquery.js"></script>
+    <script src="{{ asset('js/jquery.js') }}"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="http://ironsummitmedia.github.io/startbootstrap-grayscale/js/bootstrap.min.js"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 
     <!-- Plugin JavaScript -->
-    <script src="http://ironsummitmedia.github.io/startbootstrap-grayscale/js/jquery.easing.min.js"></script>
+    <script src="{{ asset('js/jquery.easing.min.js') }}"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="http://ironsummitmedia.github.io/startbootstrap-grayscale/js/grayscale.js"></script>
+    <script src="{{ asset('js/grayscale.js') }}"></script>
 
 </body>
 
